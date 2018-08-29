@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="myApp" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Reading Dolphin Language</title>
+    <meta charset="utf-8" />
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>-->
+    <script type="text/javascript" src="bs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="bs/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.0/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="bs/custom.js"></script>
+    <script type="text/javascript" src="bs/FileSaver.js"></script>
+    <script>
+        function doit(type, fn, dl) {
+            var elt = document.getElementById('myTable');
+            var wb = XLSX.utils.table_to_book(elt, {sheet:"Sheet JS"});
+            return dl ?
+                XLSX.write(wb, {bookType:type, bookSST:true, type: 'base64'}) :
+                XLSX.writeFile(wb, fn || ('test.' + (type || 'xlsx')));
+        }</script>
+<style type="text/css"> table,th,td{border:1px solid black;}</style>
+
+</head>
+<body ng-controller="MyController">
+<div>
+    <center><h1>Translate Dolphin Language</h1></center>
+</div>
+ <div>
+     <form enctype="multipart/form-data">
+     <input type="file" id="file">
+     <button type="submit" value="submit" ng-click="uploadExcel()">Upload File</button>
+ </form>
+ </div></br>
+
+<div>
+    <table id="myTable">
+<thead>
+            <tr>
+                <th>ID</th>
+                <th>Dolphin_Name</th>
+                <th>Sound</th>
+                <th>Meaning</th>
+            </tr>
+</thead>
+        <tbody>
+
+        </tbody>
+
+    </table>
+</div>
+
+<div>
+    <input type="submit" value="Export to XLSB!" onclick="doit('xlsb');">
+</div>
+
+</body>
+</html> 
